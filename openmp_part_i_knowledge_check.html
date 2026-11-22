@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenMP Part I — Knowledge Check</title>
+<style>
+:root{color-scheme:light;--blue:#185abc;--text:#1d2735;--muted:#58677b;--border:#d7e0ea;--green:#186a3b;--red:#a52834}*{box-sizing:border-box}body{margin:0;background:#f5f8fc;color:var(--text);font:16px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{max-width:850px;margin:34px auto;padding:0 18px 40px}header{background:#fff;border:1px solid var(--border);border-radius:14px;padding:26px 30px;margin-bottom:18px}h1{font-size:1.7rem;line-height:1.25;margin:0 0 8px}h2{font-size:1.12rem;margin:0 0 14px}p{margin:8px 0}header p{color:var(--muted)}.question{background:#fff;border:1px solid var(--border);border-radius:12px;padding:21px 25px;margin:16px 0}.number{font-size:.83rem;color:var(--blue);font-weight:750;text-transform:uppercase;letter-spacing:.05em;margin:0 0 7px}.choice{display:flex;align-items:flex-start;gap:11px;padding:10px 12px;margin:7px 0;border:1px solid var(--border);border-radius:8px;cursor:pointer}.choice:hover{background:#f3f7fe}.choice input{margin-top:5px;accent-color:var(--blue);flex-shrink:0}.choice:has(input:checked){background:#edf4ff;border-color:#7aa6eb}.choice.correct{background:#eaf8ef;border-color:#80be98}.choice.incorrect{background:#fff0f1;border-color:#d69aa2}pre{background:#f1f5fa;border:1px solid #e0e7ef;border-radius:8px;padding:12px 14px;overflow-x:auto;font-size:.89rem;line-height:1.45}code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}.feedback{display:none;border-top:1px solid var(--border);margin-top:14px;padding-top:12px;font-size:.96rem}.feedback.show{display:block}.feedback.good{color:var(--green)}.feedback.bad{color:var(--red)}.controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:22px 0}.btn{border:0;border-radius:8px;padding:12px 19px;background:var(--blue);color:white;font-size:1rem;font-weight:650;cursor:pointer}.btn.secondary{background:#e8eef6;color:var(--text)}.btn:hover{filter:brightness(.95)}.result{font-weight:700;font-size:1.12rem}footer{color:var(--muted);font-size:.9rem;margin-top:25px}@media(max-width:540px){header,.question{padding:18px}h1{font-size:1.4rem}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header><h1>OpenMP Part I — Knowledge Check</h1><p>Six questions on parallel loops, common pitfalls, shared and private variables, loop collapsing, and SPMD.</p><p>Select one answer for each question, then click <strong>Check Answers</strong> for your score and explanations.</p></header>
+<form id="quiz">
+<section class="question" data-answer="B"><p class="number">Question 1 of 6</p><h2>What does <code>#pragma omp parallel for</code> normally do when placed immediately before a suitable C/C++ <code>for</code> loop?</h2>
+<label class="choice"><input type="radio" name="q1" value="A">A. Runs every loop iteration once on every thread.</label>
+<label class="choice"><input type="radio" name="q1" value="B">B. Divides the loop iterations among the threads in the team.</label>
+<label class="choice"><input type="radio" name="q1" value="C">C. Creates a new thread for each loop iteration.</label>
+<label class="choice"><input type="radio" name="q1" value="D">D. Guarantees the iterations execute in their original order.</label>
+<div class="feedback" aria-live="polite"></div></section>
+<section class="question" data-answer="C"><p class="number">Question 2 of 6</p><h2>Assume <code>A</code> is an existing array. Why is this loop generally unsafe to parallelize directly?</h2><pre><code>for (int i = 1; i &lt; N; i++) {
+    A[i] = A[i - 1] + 5;
+}</code></pre>
+<label class="choice"><input type="radio" name="q2" value="A">A. OpenMP cannot parallelize loops that start at index 1.</label>
+<label class="choice"><input type="radio" name="q2" value="B">B. Different iterations only read the same unchanged element.</label>
+<label class="choice"><input type="radio" name="q2" value="C">C. Each iteration uses a value produced by the preceding iteration.</label>
+<label class="choice"><input type="radio" name="q2" value="D">D. Array elements must always be private to each thread.</label>
+<div class="feedback" aria-live="polite"></div></section>
+<section class="question" data-answer="A"><p class="number">Question 3 of 6</p><h2>In a parallel loop, each thread needs its own temporary workspace variable <code>temp</code>, while every thread must access the same input array <code>A</code>. Which scoping choice fits this intention?</h2>
+<label class="choice"><input type="radio" name="q3" value="A">A. <code>private(temp)</code> and <code>shared(A)</code></label>
+<label class="choice"><input type="radio" name="q3" value="B">B. <code>shared(temp)</code> and <code>private(A)</code></label>
+<label class="choice"><input type="radio" name="q3" value="C">C. <code>shared(temp)</code> and <code>shared(A)</code></label>
+<label class="choice"><input type="radio" name="q3" value="D">D. <code>private(temp)</code> and <code>private(A)</code></label>
+<div class="feedback" aria-live="polite"></div></section>
+<section class="question" data-answer="D"><p class="number">Question 4 of 6</p><h2>A variable <code>scale</code> has the value <code>2.5</code> before entering a parallel region. Each thread needs its own copy, initially set to <code>2.5</code>. Which OpenMP clause should you use?</h2>
+<label class="choice"><input type="radio" name="q4" value="A">A. <code>shared(scale)</code></label>
+<label class="choice"><input type="radio" name="q4" value="B">B. <code>private(scale)</code></label>
+<label class="choice"><input type="radio" name="q4" value="C">C. <code>lastprivate(scale)</code></label>
+<label class="choice"><input type="radio" name="q4" value="D">D. <code>firstprivate(scale)</code></label>
+<div class="feedback" aria-live="polite"></div></section>
+<section class="question" data-answer="B"><p class="number">Question 5 of 6</p><h2>For independent iterations of the nested loops below, what is the main effect of <code>collapse(2)</code>?</h2><pre><code>#pragma omp parallel for collapse(2)
+for (int row = 0; row &lt; 3; row++) {
+    for (int col = 0; col &lt; 4; col++) {
+        work(row, col);
+    }
+}</code></pre>
+<label class="choice"><input type="radio" name="q5" value="A">A. It creates two separate teams, one for each loop.</label>
+<label class="choice"><input type="radio" name="q5" value="B">B. It treats the nested loops as a combined space of 12 iterations for work distribution.</label>
+<label class="choice"><input type="radio" name="q5" value="C">C. It executes only the three outer-loop iterations.</label>
+<label class="choice"><input type="radio" name="q5" value="D">D. It makes each inner loop execute sequentially on one designated thread.</label>
+<div class="feedback" aria-live="polite"></div></section>
+<section class="question" data-answer="C"><p class="number">Question 6 of 6</p><h2>In a manual SPMD approach, a team has <code>T</code> threads numbered <code>0</code> through <code>T−1</code>. Which approach assigns each thread a non-overlapping, contiguous share of <code>N</code> items, covering all items exactly once?</h2>
+<label class="choice"><input type="radio" name="q6" value="A">A. Each thread loops from <code>0</code> to <code>N−1</code>.</label>
+<label class="choice"><input type="radio" name="q6" value="B">B. Each thread loops from <code>tid</code> to <code>N−1</code>.</label>
+<label class="choice"><input type="radio" name="q6" value="C">C. Each thread uses <code>start = tid*N/T</code> and <code>end = (tid+1)*N/T</code>, processing indices <code>start</code> through <code>end−1</code>.</label>
+<label class="choice"><input type="radio" name="q6" value="D">D. Each thread processes the first <code>N/T</code> items, regardless of its thread ID.</label>
+<div class="feedback" aria-live="polite"></div></section>
+<div class="controls"><button class="btn" type="submit">Check Answers</button><button class="btn secondary" id="reset" type="button">Try Again</button><div class="result" id="result" role="status" aria-live="polite"></div></div>
+</form><footer>Knowledge Check • OpenMP Exploration Part I</footer>
+</main>
+<script>
+'use strict';
+const explanations=[
+'OpenMP distributes iterations of a parallel for loop among the threads in a team. Each iteration executes once (assuming the loop follows OpenMP requirements); execution order is not automatically preserved.',
+'This is a loop-carried dependency: A[i] reads A[i−1], which the previous iteration writes. Parallel execution may read the wrong value because iterations need not finish in order.',
+'private(temp) gives each thread its own temporary variable. shared(A) lets all threads refer to the same input array. A private variable is not automatically initialized from the original value.',
+'firstprivate(scale) creates a separate copy per thread initialized from the original scale value when entering the construct. private(scale) does not copy in that initial value.',
+'collapse(2) combines the two tightly nested iteration spaces, producing 3 × 4 = 12 logical iterations for OpenMP to distribute, subject to OpenMP loop-nest requirements.',
+'Using integer division, consecutive boundaries tid*N/T and (tid+1)*N/T divide indices 0 through N−1 into non-overlapping half-open ranges, even if N is not divisible by T.'
+];
+const form=document.getElementById('quiz');const questions=[...document.querySelectorAll('.question')];
+form.addEventListener('submit',event=>{event.preventDefault();let score=0,answered=0;questions.forEach((section,i)=>{const correct=section.dataset.answer;const chosen=section.querySelector('input:checked');if(chosen)answered++;const isCorrect=chosen?.value===correct;if(isCorrect)score++;section.querySelectorAll('.choice').forEach(label=>{label.classList.remove('correct','incorrect');const input=label.querySelector('input');if(input.value===correct)label.classList.add('correct');if(chosen&&input===chosen&&!isCorrect)label.classList.add('incorrect');});const f=section.querySelector('.feedback');f.className='feedback show '+(isCorrect?'good':'bad');f.textContent=(isCorrect?'Correct. ':chosen?'Not quite. ':'Not answered. ')+explanations[i];});document.getElementById('result').textContent=`Score: ${score} / ${questions.length}${answered<questions.length?' ('+(questions.length-answered)+' unanswered)':''}`;});
+document.getElementById('reset').addEventListener('click',()=>{form.reset();questions.forEach(section=>{section.querySelectorAll('.choice').forEach(label=>label.classList.remove('correct','incorrect'));const f=section.querySelector('.feedback');f.className='feedback';f.textContent='';});document.getElementById('result').textContent='';window.scrollTo({top:0,behavior:'smooth'});});
+</script>
+</body>
+</html>
