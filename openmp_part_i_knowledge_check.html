@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OpenMP Part I — Knowledge Check</title>
 <style>
-:root{color-scheme:light;--blue:#185abc;--text:#1d2735;--muted:#58677b;--border:#d7e0ea;--green:#186a3b;--red:#a52834}*{box-sizing:border-box}body{margin:0;background:#f5f8fc;color:var(--text);font:16px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{max-width:850px;margin:34px auto;padding:0 18px 40px}header{background:#fff;border:1px solid var(--border);border-radius:14px;padding:26px 30px;margin-bottom:18px}h1{font-size:1.7rem;line-height:1.25;margin:0 0 8px}h2{font-size:1.12rem;margin:0 0 14px}p{margin:8px 0}header p{color:var(--muted)}.question{background:#fff;border:1px solid var(--border);border-radius:12px;padding:21px 25px;margin:16px 0}.number{font-size:.83rem;color:var(--blue);font-weight:750;text-transform:uppercase;letter-spacing:.05em;margin:0 0 7px}.choice{display:flex;align-items:flex-start;gap:11px;padding:10px 12px;margin:7px 0;border:1px solid var(--border);border-radius:8px;cursor:pointer}.choice:hover{background:#f3f7fe}.choice input{margin-top:5px;accent-color:var(--blue);flex-shrink:0}.choice:has(input:checked){background:#edf4ff;border-color:#7aa6eb}.choice.correct{background:#eaf8ef;border-color:#80be98}.choice.incorrect{background:#fff0f1;border-color:#d69aa2}pre{background:#f1f5fa;border:1px solid #e0e7ef;border-radius:8px;padding:12px 14px;overflow-x:auto;font-size:.89rem;line-height:1.45}code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}.feedback{display:none;border-top:1px solid var(--border);margin-top:14px;padding-top:12px;font-size:.96rem}.feedback.show{display:block}.feedback.good{color:var(--green)}.feedback.bad{color:var(--red)}.controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:22px 0}.btn{border:0;border-radius:8px;padding:12px 19px;background:var(--blue);color:white;font-size:1rem;font-weight:650;cursor:pointer}.btn.secondary{background:#e8eef6;color:var(--text)}.btn:hover{filter:brightness(.95)}.result{font-weight:700;font-size:1.12rem}footer{color:var(--muted);font-size:.9rem;margin-top:25px}@media(max-width:540px){header,.question{padding:18px}h1{font-size:1.4rem}}
+:root{color-scheme:light;--blue:#185abc;--text:#1d2735;--muted:#58677b;--border:#d7e0ea;--green:#186a3b;--red:#a52834}*{box-sizing:border-box}body{margin:0;background:#f5f8fc;color:var(--text);font:16px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{max-width:850px;margin:34px auto;padding:0 18px 40px}header{background:#fff;border:1px solid var(--border);border-radius:14px;padding:26px 30px;margin-bottom:18px}h1{font-size:1.7rem;line-height:1.25;margin:0 0 8px}h2{font-size:1.12rem;margin:0 0 14px}p{margin:8px 0}header p{color:var(--muted)}.question{background:#fff;border:1px solid var(--border);border-radius:12px;padding:21px 25px;margin:16px 0}.number{font-size:.83rem;color:var(--blue);font-weight:750;text-transform:uppercase;letter-spacing:.05em;margin:0 0 7px}.choice{display:flex;align-items:flex-start;gap:11px;padding:10px 12px;margin:7px 0;border:1px solid var(--border);border-radius:8px;cursor:pointer}.choice:hover{background:#f3f7fe}.choice input{margin-top:5px;accent-color:var(--blue);flex-shrink:0}.choice:has(input:checked){background:#edf4ff;border-color:#7aa6eb}.choice.correct{background:#eaf8ef;border-color:#80be98}.choice.incorrect{background:#fff0f1;border-color:#d69aa2}.choice.locked{cursor:default}.choice.locked:hover{background:inherit}.choice input:disabled{opacity:1}pre{background:#f1f5fa;border:1px solid #e0e7ef;border-radius:8px;padding:12px 14px;overflow-x:auto;font-size:.89rem;line-height:1.45}code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}.feedback{display:none;border-top:1px solid var(--border);margin-top:14px;padding-top:12px;font-size:.96rem}.feedback.show{display:block}.feedback.good{color:var(--green)}.feedback.bad{color:var(--red)}.controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:22px 0}.btn{border:0;border-radius:8px;padding:12px 19px;background:var(--blue);color:white;font-size:1rem;font-weight:650;cursor:pointer}.btn.secondary{background:#e8eef6;color:var(--text)}.btn:hover{filter:brightness(.95)}.result{font-weight:700;font-size:1.12rem}footer{color:var(--muted);font-size:.9rem;margin-top:25px}@media(max-width:540px){header,.question{padding:18px}h1{font-size:1.4rem}}
 </style>
 </head>
 <body>
 <main class="wrap">
-<header><h1>OpenMP Part I — Knowledge Check</h1><p>Six questions on parallel loops, common pitfalls, shared and private variables, loop collapsing, and SPMD.</p><p>Select one answer for each question, then click <strong>Check Answers</strong> for your score and explanations.</p></header>
+<header><h1>OpenMP Part I — Knowledge Check</h1><p>Six questions on parallel loops, common pitfalls, shared and private variables, loop collapsing, and SPMD.</p><p>Select an answer to see instant feedback and an explanation. Each question is scored when you answer it.</p></header>
 <form id="quiz">
 <section class="question" data-answer="B"><p class="number">Question 1 of 6</p><h2>What does <code>#pragma omp parallel for</code> normally do when placed immediately before a suitable C/C++ <code>for</code> loop?</h2>
 <label class="choice"><input type="radio" name="q1" value="A">A. Runs every loop iteration once on every thread.</label>
@@ -55,7 +55,7 @@ for (int row = 0; row &lt; 3; row++) {
 <label class="choice"><input type="radio" name="q6" value="C">C. Each thread uses <code>start = tid*N/T</code> and <code>end = (tid+1)*N/T</code>, processing indices <code>start</code> through <code>end−1</code>.</label>
 <label class="choice"><input type="radio" name="q6" value="D">D. Each thread processes the first <code>N/T</code> items, regardless of its thread ID.</label>
 <div class="feedback" aria-live="polite"></div></section>
-<div class="controls"><button class="btn" type="submit">Check Answers</button><button class="btn secondary" id="reset" type="button">Try Again</button><div class="result" id="result" role="status" aria-live="polite"></div></div>
+<div class="controls"><button class="btn secondary" id="reset" type="button">Try Again</button><div class="result" id="result" role="status" aria-live="polite"></div></div>
 </form><footer>Knowledge Check • OpenMP Exploration Part I</footer>
 </main>
 <script>
@@ -68,9 +68,48 @@ const explanations=[
 'collapse(2) combines the two tightly nested iteration spaces, producing 3 × 4 = 12 logical iterations for OpenMP to distribute, subject to OpenMP loop-nest requirements.',
 'Using integer division, consecutive boundaries tid*N/T and (tid+1)*N/T divide indices 0 through N−1 into non-overlapping half-open ranges, even if N is not divisible by T.'
 ];
-const form=document.getElementById('quiz');const questions=[...document.querySelectorAll('.question')];
-form.addEventListener('submit',event=>{event.preventDefault();let score=0,answered=0;questions.forEach((section,i)=>{const correct=section.dataset.answer;const chosen=section.querySelector('input:checked');if(chosen)answered++;const isCorrect=chosen?.value===correct;if(isCorrect)score++;section.querySelectorAll('.choice').forEach(label=>{label.classList.remove('correct','incorrect');const input=label.querySelector('input');if(input.value===correct)label.classList.add('correct');if(chosen&&input===chosen&&!isCorrect)label.classList.add('incorrect');});const f=section.querySelector('.feedback');f.className='feedback show '+(isCorrect?'good':'bad');f.textContent=(isCorrect?'Correct. ':chosen?'Not quite. ':'Not answered. ')+explanations[i];});document.getElementById('result').textContent=`Score: ${score} / ${questions.length}${answered<questions.length?' ('+(questions.length-answered)+' unanswered)':''}`;});
-document.getElementById('reset').addEventListener('click',()=>{form.reset();questions.forEach(section=>{section.querySelectorAll('.choice').forEach(label=>label.classList.remove('correct','incorrect'));const f=section.querySelector('.feedback');f.className='feedback';f.textContent='';});document.getElementById('result').textContent='';window.scrollTo({top:0,behavior:'smooth'});});
+const form=document.getElementById('quiz');
+const questions=[...document.querySelectorAll('.question')];
+const result=document.getElementById('result');
+function updateScore(){
+  const answered=questions.filter(q=>q.dataset.answered==='true').length;
+  const score=questions.filter(q=>q.dataset.correct==='true').length;
+  result.textContent=`Score: ${score} / ${answered} answered (${questions.length} total)`+(answered===questions.length?' · Quiz complete!':'');
+}
+form.addEventListener('submit',event=>event.preventDefault());
+questions.forEach((section,index)=>{
+  section.addEventListener('change',event=>{
+    const selected=event.target;
+    if(!selected.matches('input[type="radio"]')||section.dataset.answered==='true')return;
+    const correct=section.dataset.answer;
+    const isCorrect=selected.value===correct;
+    section.dataset.answered='true';
+    section.dataset.correct=String(isCorrect);
+    section.querySelectorAll('.choice').forEach(label=>{
+      const input=label.querySelector('input');
+      input.disabled=true;
+      label.classList.add('locked');
+      if(input.value===correct)label.classList.add('correct');
+      if(input===selected&&!isCorrect)label.classList.add('incorrect');
+    });
+    const feedback=section.querySelector('.feedback');
+    feedback.className='feedback show '+(isCorrect?'good':'bad');
+    const correctLabel=[...section.querySelectorAll('input')].find(input=>input.value===correct).parentElement.textContent.trim();
+    feedback.textContent=(isCorrect?'✓ Correct! ':'✗ Not quite. ')+explanations[index]+(isCorrect?'':' Correct answer: '+correctLabel+'.');
+    updateScore();
+  });
+});
+document.getElementById('reset').addEventListener('click',()=>{
+  form.reset();
+  questions.forEach(section=>{
+    delete section.dataset.answered;delete section.dataset.correct;
+    section.querySelectorAll('input').forEach(input=>input.disabled=false);
+    section.querySelectorAll('.choice').forEach(label=>label.classList.remove('correct','incorrect','locked'));
+    const feedback=section.querySelector('.feedback');feedback.className='feedback';feedback.textContent='';
+  });
+  updateScore();window.scrollTo({top:0,behavior:'smooth'});
+});
+updateScore();
 </script>
 </body>
 </html>
